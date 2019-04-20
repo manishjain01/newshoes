@@ -1,0 +1,45 @@
+<IfModule mod_rewrite.c>
+
+    <IfModule mod_negotiation.c>
+
+        Options -MultiViews
+
+    </IfModule>
+
+	RewriteEngine On
+
+	RewriteBase /
+
+
+
+	RewriteCond %{REQUEST_FILENAME} !-d
+
+	RewriteRule ^(.*)/$ $1 [L,R=301]
+
+	
+
+	RewriteCond %{REQUEST_URI} !(\.css|\.js|\.png|\.jpg|\.gif|robots\.txt)$ [NC]
+
+	RewriteCond %{REQUEST_FILENAME} !-d
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+
+	RewriteRule ^ index.php [L]
+
+
+
+	RewriteCond %{REQUEST_FILENAME} !-d
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+
+	RewriteCond %{REQUEST_URI} !^/public/
+
+	RewriteRule ^(css|js|img)/(.*)$ public/$1/$2 [L,NC]
+
+	#php_value upload_max_filesize 20M
+
+	#php_value post_max_size 20M
+
+	#php_value max_execution_time 25920000
+
+</IfModule>
